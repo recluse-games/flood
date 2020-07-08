@@ -10,7 +10,7 @@ type Filler struct {
 	MaxDistance int
 }
 
-// NewFiller Returns a new instance of Flood
+// NewFiller Returns a new instance of Filler
 func NewFiller(origin Point, grid Grid, maxDistance int) *Filler {
 	return &Filler{origin, grid, maxDistance}
 }

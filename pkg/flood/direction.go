@@ -12,7 +12,7 @@ const (
 
 // String returns the string representation of a direction.
 func (d Direction) String() string {
-	return [...]string{"Nort", "South", "East", "West"}[d]
+	return [...]string{"North", "South", "East", "West"}[d]
 }
 
 // Int returns the integer representation of a direction.

@@ -31,9 +31,7 @@ func (n *GenericNode) Clone() Node {
 		point: n.point,
 	}
 
-	typeCastedNode := nodeCopy
-
-	return &typeCastedNode
+	return &nodeCopy
 }
 
 type GenericGrid struct {

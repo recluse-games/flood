@@ -1,4 +1,4 @@
-package fill
+package floodfill
 
 type Direction int
 
@@ -10,7 +10,7 @@ const (
 )
 
 func (d Direction) String() string {
-	return [...]string{"North", "East", "South", "West"}[d]
+	return [...]string{"Nort", "South", "East", "West"}[d]
 }
 
 func (d Direction) Int() int {

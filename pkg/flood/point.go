@@ -1,4 +1,4 @@
-package floodfill
+package flood
 
 // Point A Point holds a cartesian coordinate pair with x and y as standard integer values.
 type Point struct {

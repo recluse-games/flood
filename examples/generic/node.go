@@ -1,9 +1,10 @@
 package generic
 
-// GenericNode A simple generic node implementation for basic 2d grids.
+import "github.com/recluse-games/flood/pkg/flood"
+
 type GenericNode struct {
 	id    string
-	point Point
+	point flood.Point
 }
 
 func (n *GenericNode) ID() string {
@@ -14,15 +15,15 @@ func (n *GenericNode) SetID(id string) {
 	n.id = id
 }
 
-func (n *GenericNode) Point() Point {
+func (n *GenericNode) Point() flood.Point {
 	return n.point
 }
 
-func (n *GenericNode) SetPoint(point Point) {
+func (n *GenericNode) SetPoint(point flood.Point) {
 	n.point = point
 }
 
-func (n *GenericNode) Clone() Node {
+func (n *GenericNode) Clone() flood.Node {
 	nodeCopy := GenericNode{
 		id:    n.id,
 		point: n.point,

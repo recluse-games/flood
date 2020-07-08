@@ -1,4 +1,4 @@
-package floodfill
+package flood
 
 // Direction an integer value that represents a cardinal direction
 type Direction int

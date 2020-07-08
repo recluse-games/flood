@@ -1,4 +1,4 @@
-package floodfill
+package flood
 
 // Node A Node represents a point in a 2D matrix with identifying information
 type Node interface {

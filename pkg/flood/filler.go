@@ -1,22 +1,22 @@
-package floodfill
+package flood
 
 // Directions A slice representing the four cardinal directions.
 var Directions = []Direction{North, South, East, West}
 
-// Flood flood fills a board state
-type Flood struct {
+// Filler flood fills a board state
+type Filler struct {
 	Origin      Point
 	Grid        Grid
 	MaxDistance int
 }
 
-// NewFlood Returns a new instance of Flood
-func NewFlood(origin Point, grid Grid, maxDistance int) *Flood {
-	return &Flood{origin, grid, maxDistance}
+// NewFiller Returns a new instance of Flood
+func NewFiller(origin Point, grid Grid, maxDistance int) *Filler {
+	return &Filler{origin, grid, maxDistance}
 }
 
 // Fill Runs FloodFill algorithm for a grid based on starting coordinates and IDs for fillage and blockage.
-func (f *Flood) Fill(point Point, filledID string, blockedID string) {
+func (f *Filler) Fill(point Point, filledID string, blockedID string) {
 	node := f.Grid.Nodes()[point.X][point.Y].Clone()
 
 	if node.ID() != filledID && node.ID() != blockedID && f.validateDistance(point) {
@@ -47,7 +47,7 @@ func (f *Flood) Fill(point Point, filledID string, blockedID string) {
 }
 
 // validateDistance Validates that the distance between two points is above the MaxDistance
-func (f *Flood) validateDistance(point Point) bool {
+func (f *Filler) validateDistance(point Point) bool {
 	if point.Distance(f.Origin) <= f.MaxDistance {
 		return true
 	}

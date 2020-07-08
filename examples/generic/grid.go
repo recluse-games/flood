@@ -1,16 +1,15 @@
 package generic
 
-import "github.com/recluse-games/floodfill/pkg/floodfill"
+import "github.com/recluse-games/flood/pkg/flood"
 
-// GenericGrid structure for 2d games
 type GenericGrid struct {
-	nodes [][]floodfill.Node
+	nodes [][]flood.Node
 }
 
-func (n GenericGrid) Nodes() [][]floodfill.Node {
+func (n GenericGrid) Nodes() [][]flood.Node {
 	return n.nodes
 }
 
-func (n GenericGrid) SetNode(x int, y int, node floodfill.Node) {
+func (n GenericGrid) SetNode(x int, y int, node flood.Node) {
 	n.nodes[x][y] = node
 }

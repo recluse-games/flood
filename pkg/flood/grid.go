@@ -1,4 +1,4 @@
-package floodfill
+package flood
 
 // Grid represents a 2D matrix comprised of nodes.
 type Grid interface {

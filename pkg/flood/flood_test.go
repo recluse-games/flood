@@ -1,4 +1,4 @@
-package floodfill
+package flood
 
 import (
 	"testing"
@@ -100,7 +100,7 @@ func TestFill(t *testing.T) {
 	grid := GenericGrid{}
 	grid.nodes = buildEmptyGrid(4, 4)
 
-	flood := NewFlood(Point{0, 0}, grid, 8)
+	flood := NewFiller(Point{0, 0}, grid, 8)
 	flood.Fill(Point{0, 0}, "0001", "0002")
 
 	if flood.Grid.Nodes()[0][0].ID() != "0001" {
@@ -116,7 +116,7 @@ func TestFill(t *testing.T) {
 	// Test blocked fill
 	grid = GenericGrid{}
 	grid.nodes = buildBlockedGrid(4, 4)
-	flood = NewFlood(Point{0, 0}, grid, 8)
+	flood = NewFiller(Point{0, 0}, grid, 8)
 	flood.Fill(Point{0, 0}, "0001", "0002")
 
 	if flood.Grid.Nodes()[0][0].ID() != "0001" {

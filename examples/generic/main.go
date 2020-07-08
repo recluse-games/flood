@@ -1,16 +1,18 @@
 package generic
 
+import "github.com/recluse-games/flood/pkg/flood"
+
 func main() {
 	grid := GenericGrid{}
-	nodes := make([][]Node, height)
+	nodes := make([][]flood.Node, 10)
 
 	// Generate an empty 10x10 grid of nodes
 	for x := 0; x < 10; x++ {
-		row := make([]Node, 10)
+		row := make([]flood.Node, 10)
 
 		for y := 0; y < 10; y++ {
 			node := GenericNode{}
-			node.SetPoint(Point{x, y})
+			node.SetPoint(flood.Point{X: x, Y: y})
 			node.SetID("0000")
 
 			row[y] = &node
@@ -20,11 +22,11 @@ func main() {
 	}
 
 	// Create a new flood instance with an origin point and max taxi-cab distance to fill to.
-	flood = NewFlood(Point{0, 0}, grid, 8)
+	filler := flood.NewFiller(flood.Point{X: 0, Y: 0}, grid, 8)
 
 	// Fill the grid
-	flood.Fill(Point{0, 0}, "0001", "0002")
+	filler.Fill(flood.Point{X: 0, Y: 0}, "0001", "0002")
 
 	// Return your now filled in nodes
-	return flood.Grid.Nodes()[0][0].ID()
+	filler.Grid.Nodes()[0][0].ID()
 }

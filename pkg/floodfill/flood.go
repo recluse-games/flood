@@ -10,16 +10,13 @@ type Flood struct {
 	MaxDistance int
 }
 
-func (f Flood) validateDistance(point Point) bool {
-	if f.Origin.Distance(point) < f.MaxDistance {
-		return true
-	}
-
-	return false
+// NewFlood Returns a new instance of Flood
+func NewFlood(origin Point, grid Grid, maxDistance int) *Flood {
+	return &Flood{origin, grid, maxDistance}
 }
 
-// Fill Runs flood fill for a grid based on starting coordinates and IDs for fillage and blockage.
-func (f Flood) Fill(point Point, filledID string, blockedID string) {
+// Fill Runs FloodFill algorithm for a grid based on starting coordinates and IDs for fillage and blockage.
+func (f *Flood) Fill(point Point, filledID string, blockedID string) {
 	node := f.Grid.Nodes()[point.X][point.Y].Clone()
 
 	if node.ID() != filledID && node.ID() != blockedID && f.validateDistance(point) {
@@ -47,4 +44,13 @@ func (f Flood) Fill(point Point, filledID string, blockedID string) {
 			}
 		}
 	}
+}
+
+// validateDistance Validates that the distance between two points is above the MaxDistance
+func (f *Flood) validateDistance(point Point) bool {
+	if point.Distance(f.Origin) <= f.MaxDistance {
+		return true
+	}
+
+	return false
 }

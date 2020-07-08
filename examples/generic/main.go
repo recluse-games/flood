@@ -20,11 +20,7 @@ func main() {
 	}
 
 	// Create a new flood instance with an origin point and max taxi-cab distance to fill to.
-	flood := Flood{
-		Origin:      Point{0, 0},
-		Grid:        &grid,
-		MaxDistance: 8,
-	}
+	flood = NewFlood(Point{0, 0}, grid, 8)
 
 	// Fill the grid
 	flood.Fill(Point{0, 0}, "0001", "0002")

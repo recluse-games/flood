@@ -4,7 +4,6 @@ import (
 	"testing"
 )
 
-// GenericNode A simple generic node implementation for basic 2d grids.
 type GenericNode struct {
 	id    string
 	point Point
@@ -37,7 +36,6 @@ func (n *GenericNode) Clone() Node {
 	return &typeCastedNode
 }
 
-// Generic Grid structure for 2d games
 type GenericGrid struct {
 	nodes [][]Node
 }
@@ -51,7 +49,7 @@ func (n GenericGrid) SetNode(x int, y int, node Node) {
 }
 
 // A simple initilizer function to provide a default empty x by x grid state.
-func emptyGridState(width int, height int) [][]Node {
+func buildEmptyGrid(width int, height int) [][]Node {
 	nodes := make([][]Node, height)
 
 	for x := 0; x < width; x++ {
@@ -72,7 +70,7 @@ func emptyGridState(width int, height int) [][]Node {
 }
 
 // A simple initilizer function to provide a default grid with a set of blocked nodes.
-func blockedGridState(width int, height int) [][]Node {
+func buildBlockedGrid(width int, height int) [][]Node {
 	nodes := make([][]Node, height)
 
 	for x := 0; x < width; x++ {
@@ -98,18 +96,12 @@ func blockedGridState(width int, height int) [][]Node {
 }
 
 func TestFill(t *testing.T) {
-	grid := GenericGrid{}
-	grid.nodes = emptyGridState(4, 4)
-
-	flood := Flood{
-		Origin:      Point{0, 0},
-		Grid:        &grid,
-		MaxDistance: 8,
-	}
-
-	flood.Fill(Point{0, 0}, "0001", "0002")
-
 	// Test full empty fill
+	grid := GenericGrid{}
+	grid.nodes = buildEmptyGrid(4, 4)
+
+	flood := NewFlood(Point{0, 0}, grid, 8)
+	flood.Fill(Point{0, 0}, "0001", "0002")
 
 	if flood.Grid.Nodes()[0][0].ID() != "0001" {
 		t.Logf("Origin node not filled.")
@@ -123,14 +115,8 @@ func TestFill(t *testing.T) {
 
 	// Test blocked fill
 	grid = GenericGrid{}
-	grid.nodes = blockedGridState(4, 4)
-
-	flood = Flood{
-		Origin:      Point{0, 0},
-		Grid:        &grid,
-		MaxDistance: 3,
-	}
-
+	grid.nodes = buildBlockedGrid(4, 4)
+	flood = NewFlood(Point{0, 0}, grid, 8)
 	flood.Fill(Point{0, 0}, "0001", "0002")
 
 	if flood.Grid.Nodes()[0][0].ID() != "0001" {
